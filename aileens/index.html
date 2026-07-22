@@ -1088,7 +1088,7 @@
     padding-bottom: 70px;
     border-bottom: 1px solid var(--hairline-light);
   }
-  .foot-mark .eye-mark { width: clamp(48px, 8vw, 104px); height: auto; }
+  .foot-mark .eye-mark { width: clamp(48px, 8vw, 104px); height: auto; flex-shrink: 0; }
   .foot-mark .eye-mark path { stroke: var(--gold); }
   .foot-cols {
     display: grid;
@@ -1180,6 +1180,8 @@
     .brand .brand-sub { display: none; }
     .floral--tr { width: 150px; opacity: 0.55; right: -20px; }
     .floral--bl { width: 120px; opacity: 0.3; }
+    .foot-mark { font-size: 21px; letter-spacing: 0.15em; text-indent: 0.15em; gap: 12px; }
+    .foot-mark .eye-mark { width: 38px; }
     .nav-cta .nav-phone { display: none; }
     .nav-toggle { display: block; }
     .section { padding: 88px 22px; }
