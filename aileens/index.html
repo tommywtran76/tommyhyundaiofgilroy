@@ -713,14 +713,13 @@
 
   /* ---------- before/after ---------- */
   .ba-wrap {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: clamp(48px, 7vw, 110px);
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
   }
   .ba-slider {
     position: relative;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 1600 / 664;
     overflow: hidden;
     background: var(--sand);
     user-select: none;
@@ -1285,7 +1284,7 @@
 
 <!-- ============ MANIFESTO ============ -->
 <section class="manifesto" aria-label="Our philosophy">
-  <img class="floral floral--tr" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_080048_4808d057-4b0d-42b6-9eb5-b614883160e6.png" alt="" aria-hidden="true" loading="lazy" width="1024" height="1024">
+  <img class="floral floral--tr" src="assets/img/floral.png" alt="" aria-hidden="true" loading="lazy" width="1024" height="1024">
   <div class="manifesto-inner">
     <p class="label reveal">La Philosophie</p>
     <h2 class="reveal" style="--d:.1s">Some stories deserve<br>a <em>second telling.</em></h2>
@@ -1315,7 +1314,7 @@
   <div class="method-grid">
     <div class="method-media reveal">
       <figure>
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_064257_6415575e-0fe7-4506-8f27-3c768eff56ef.png" alt="Macro photograph of a restored natural eyebrow after non-laser tattoo removal at Aileen's Beauty in Campbell, CA" loading="lazy" width="896" height="1200">
+        <img src="assets/img/brow-macro.jpg" alt="Macro photograph of a restored natural eyebrow after non-laser tattoo removal at Aileen's Beauty in Campbell, CA" loading="lazy" width="896" height="1200">
       </figure>
       <figcaption>The finished canvas — natural brow, unwritten</figcaption>
     </div>
@@ -1395,23 +1394,23 @@
     <div>
       <p class="label reveal">03 — The Results</p>
       <h2 class="reveal serif" style="--d:.1s; font-size: clamp(36px, 4.6vw, 62px); margin-top: 22px;">The proof is in<br><em>the reveal.</em></h2>
-      <p class="reveal" style="--d:.2s; margin-top: 24px; color: var(--muted); font-size: 15.5px; max-width: 48ch;">Drag the line. Old, ashen microblading on one side — the same brow, restored and quietly itself, on the other. Every removal plan is built around your pigment, your skin, and your timeline.</p>
+      <p class="reveal" style="--d:.2s; margin-top: 24px; color: var(--muted); font-size: 15.5px; max-width: 48ch;">Drag the line. A real Aileen's Beauty client — old microblading on one side, the same brows restored and quietly their own on the other. Every removal plan is built around your pigment, your skin, and your timeline.</p>
       <div class="reveal" style="--d:.3s; margin-top: 40px;">
         <a class="btn" href="https://www.aileennbeauty.com/portfolio" rel="noopener">View the Full Portfolio</a>
       </div>
     </div>
     <div class="reveal" style="--d:.15s">
       <div class="ba-slider" id="baSlider">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_163659_23df92ff-f7f4-450b-8de4-cf94d2e31240.png" alt="Before: close-up of eyebrows with old blue-grey microbladed tattoo pigment" width="896" height="1200">
+        <img src="assets/img/real-before.jpg" alt="Real client before photo: eyebrows with old microbladed tattoo pigment, at Aileen's Beauty Campbell CA" width="1600" height="664">
         <div class="ba-after-clip" id="baClip">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_163702_d6dc9c97-6168-4a4e-800f-bff7f70b84c5.png" alt="After: the same eyebrows restored to clean, natural brows after non-laser tattoo removal" width="896" height="1200">
+          <img src="assets/img/real-after.jpg" alt="Real client after photo: the same eyebrows fully restored after non-laser tattoo removal at Aileen's Beauty" width="1600" height="664">
         </div>
         <div class="ba-handle" id="baHandle"></div>
         <div class="ba-tag ba-tag--before">Before</div>
         <div class="ba-tag ba-tag--after">After</div>
         <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Compare before and after eyebrow tattoo removal">
       </div>
-      <p class="ba-note">Illustrative rendering · individual results vary by pigment & skin</p>
+      <p class="ba-note">Real Aileen's Beauty client · results and timelines vary by pigment & skin</p>
     </div>
   </div>
 </section>
@@ -1427,21 +1426,21 @@
       <a class="g-card reveal" href="#book">
         <figure>
           <span class="g-num">I.</span>
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_163946_a51873d2-5173-4dfd-ab64-6b5411fb8689.png" alt="Aileen's Beauty private treatment room in Campbell CA with branded wall reading Refine Restore Reveal" loading="lazy" width="896" height="1200">
+          <img src="assets/img/studio-room.jpg" alt="Aileen's Beauty private treatment room in Campbell CA with branded wall reading Refine Restore Reveal" loading="lazy" width="896" height="1200">
         </figure>
         <div class="g-meta"><h3>The Studio</h3><span>Private · Women-Only</span></div>
       </a>
       <a class="g-card reveal" style="--d:.1s" href="#method">
         <figure>
           <span class="g-num">II.</span>
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_163706_6dfe5aaa-7fa0-4ef5-a043-6f3fb2cf6400.png" alt="Esthetician performing precision non-laser eyebrow tattoo removal on a client at Aileen's Beauty" loading="lazy" width="896" height="1200">
+          <img src="assets/img/craft.jpg" alt="Esthetician performing precision non-laser eyebrow tattoo removal on a client at Aileen's Beauty" loading="lazy" width="896" height="1200">
         </figure>
         <div class="g-meta"><h3>The Craft</h3><span>By Hand · Under Magnification</span></div>
       </a>
       <a class="g-card reveal" style="--d:.2s" href="https://www.aileennbeauty.com/services" rel="noopener">
         <figure>
           <span class="g-num">III.</span>
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_163708_a8fbb4c2-f6cb-4511-9251-aea031982ec7.png" alt="Luxury facial ritual on a treatment bed at Aileen's Beauty women-only spa in Campbell CA" loading="lazy" width="1536" height="2048">
+          <img src="assets/img/rituals.jpg" alt="Luxury facial ritual on a treatment bed at Aileen's Beauty women-only spa in Campbell CA" loading="lazy" width="1536" height="2048">
         </figure>
         <div class="g-meta"><h3>The Rituals</h3><span>Facials · Skin · Body</span></div>
       </a>
@@ -1501,7 +1500,7 @@
     <div class="about-grid">
       <div class="about-media reveal">
         <figure>
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_072400_c23aedde-5421-454b-8f63-e3271d1b7c31.png" alt="Portrait evoking the serene, luxurious experience at Aileen's Beauty, Campbell CA" loading="lazy" width="1536" height="2048">
+          <img src="assets/img/portrait.jpg" alt="Portrait evoking the serene, luxurious experience at Aileen's Beauty, Campbell CA" loading="lazy" width="1536" height="2048">
         </figure>
       </div>
       <div class="about-copy">
@@ -1583,7 +1582,7 @@
 
 <!-- ============ FAQ ============ -->
 <section class="section" id="faq" aria-label="Frequently asked questions" style="position: relative; overflow: visible;">
-  <img class="floral floral--bl" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_080048_4808d057-4b0d-42b6-9eb5-b614883160e6.png" alt="" aria-hidden="true" loading="lazy" width="1024" height="1024">
+  <img class="floral floral--bl" src="assets/img/floral.png" alt="" aria-hidden="true" loading="lazy" width="1024" height="1024">
   <div class="sec-head sec-head--center">
     <p class="label reveal">09 — Questions</p>
     <h2 class="reveal" style="--d:.1s">Asked, <em>answered.</em></h2>
@@ -1618,7 +1617,7 @@
 
 <!-- ============ BOOKING ============ -->
 <section class="booking" id="book" aria-label="Reserve a consultation">
-  <div class="booking-bg" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_163946_a51873d2-5173-4dfd-ab64-6b5411fb8689.png');" aria-hidden="true"></div>
+  <div class="booking-bg" style="background-image: url('assets/img/studio-room.jpg');" aria-hidden="true"></div>
   <div class="booking-inner">
     <p class="label label--light reveal">10 — Begin</p>
     <h2 class="reveal" style="--d:.1s">Your brows are waiting<br>to be <em>yours again.</em></h2>
