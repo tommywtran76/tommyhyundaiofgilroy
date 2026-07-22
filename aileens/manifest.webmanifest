@@ -1,0 +1,13 @@
+{
+  "name": "Aileen's Beauty — Eyebrow Tattoo Removal",
+  "short_name": "Aileen's",
+  "description": "Non-laser eyebrow tattoo removal in Campbell, CA. Private, women-only luxury studio.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#181314",
+  "theme_color": "#181314",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
