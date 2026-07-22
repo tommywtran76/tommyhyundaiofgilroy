@@ -1,6 +1,9 @@
 name: Fetch campaign assets
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/luxury-brand-website-gw73f3]
 
 permissions:
   contents: write
