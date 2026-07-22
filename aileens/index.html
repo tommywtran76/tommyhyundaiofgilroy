@@ -1075,9 +1075,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(18px, 3vw, 40px);
+    gap: clamp(14px, 2.6vw, 34px);
     font-family: 'Cinzel', serif;
-    font-size: clamp(30px, 6vw, 76px);
+    font-size: clamp(26px, 5vw, 64px);
     font-weight: 400;
     letter-spacing: 0.22em;
     text-indent: 0.22em;
@@ -1088,8 +1088,14 @@
     padding-bottom: 70px;
     border-bottom: 1px solid var(--hairline-light);
   }
-  .foot-mark .eye-mark { width: clamp(48px, 8vw, 104px); height: auto; }
-  .foot-mark .eye-mark path { stroke: var(--gold); }
+  .foot-face {
+    width: clamp(110px, 17vw, 210px);
+    height: auto;
+    flex-shrink: 0;
+  }
+  .foot-face .line { stroke: var(--cream); fill: none; stroke-linecap: round; }
+  .foot-face .hair { stroke: rgba(253,250,249,0.55); fill: none; stroke-linecap: round; }
+  .foot-face .lips { fill: #D7182A; stroke: none; }
   .foot-cols {
     display: grid;
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -1180,6 +1186,8 @@
     .brand .brand-sub { display: none; }
     .floral--tr { width: 150px; opacity: 0.55; right: -20px; }
     .floral--bl { width: 120px; opacity: 0.3; }
+    .foot-mark { font-size: 19px; letter-spacing: 0.13em; text-indent: 0.13em; gap: 10px; }
+    .foot-face { width: 88px; }
     .nav-cta .nav-phone { display: none; }
     .nav-toggle { display: block; }
     .section { padding: 88px 22px; }
@@ -1639,14 +1647,36 @@
   <div class="foot-inner">
     <div class="foot-mark">
       <span>Aileen</span>
-      <svg class="eye-mark" viewBox="0 0 48 26" fill="none" aria-hidden="true">
-        <path d="M5 8 Q24 -1 43 8" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M9 14 Q24 22.5 39 14" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M14 17.5 L11.5 21.5" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M19.5 19.5 L18 24" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M25.5 20 L25.5 24.5" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M31 18.8 L32.8 23" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M36 16.5 L38.5 20" stroke-width="1.1" stroke-linecap="round"/>
+      <svg class="foot-face" viewBox="0 0 220 150" aria-label="Aileen Beauty face logo" role="img">
+        <!-- flowing hair -->
+        <path class="hair" d="M110 18 C80 4 42 10 20 42" stroke-width="1.6"/>
+        <path class="hair" d="M110 24 C84 14 56 20 36 48" stroke-width="1.4"/>
+        <path class="hair" d="M108 20 C140 6 176 12 200 42" stroke-width="1.6"/>
+        <path class="hair" d="M110 26 C138 16 166 22 188 50" stroke-width="1.4"/>
+        <path class="hair" d="M112 22 C150 34 168 66 196 84" stroke-width="1.3"/>
+        <path class="hair" d="M108 24 C70 36 52 66 24 82" stroke-width="1.3"/>
+        <!-- brows -->
+        <path class="line" d="M56 64 Q72 54 90 63" stroke-width="2.6"/>
+        <path class="line" d="M130 63 Q148 54 164 64" stroke-width="2.6"/>
+        <!-- closed eyes -->
+        <path class="line" d="M58 80 Q73 90 88 79" stroke-width="1.8"/>
+        <path class="line" d="M132 79 Q147 90 162 80" stroke-width="1.8"/>
+        <!-- lashes -->
+        <path class="line" d="M62 84 L58 90" stroke-width="1.4"/>
+        <path class="line" d="M68 87 L65 93" stroke-width="1.4"/>
+        <path class="line" d="M74 88.5 L73 95" stroke-width="1.4"/>
+        <path class="line" d="M80 87.5 L82 93" stroke-width="1.4"/>
+        <path class="line" d="M85 84.5 L88 90" stroke-width="1.4"/>
+        <path class="line" d="M136 84.5 L133 90" stroke-width="1.4"/>
+        <path class="line" d="M141 87.5 L139 93" stroke-width="1.4"/>
+        <path class="line" d="M147 88.5 L148 95" stroke-width="1.4"/>
+        <path class="line" d="M153 87 L156 93" stroke-width="1.4"/>
+        <path class="line" d="M159 83.5 L163 89" stroke-width="1.4"/>
+        <!-- nose -->
+        <path class="line" d="M105 103 Q110 109 115 103" stroke-width="1.5"/>
+        <!-- red lips -->
+        <path class="lips" d="M86 124 C92 116 102 116 110 121 C118 116 128 116 134 124 C126 134 114 138 110 138 C106 138 94 134 86 124 Z"/>
+        <path d="M86 124 C98 128 122 128 134 124" stroke="#A80F1E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
       </svg>
       <span>Beauty</span>
     </div>
