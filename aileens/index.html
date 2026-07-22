@@ -13,7 +13,7 @@
 <meta property="og:image" content="assets/hero-poster.jpg">
 <meta property="og:url" content="https://www.aileennbeauty.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#231A11">
+<meta name="theme-color" content="#181314">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
@@ -23,7 +23,7 @@
 <link rel="preload" as="image" href="assets/hero-poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -97,18 +97,18 @@
 
 <style>
   :root {
-    --cream:   #FBF8F2;
-    --ivory:   #F5EFE5;
-    --linen:   #EFE7D9;
-    --sand:    #E4D8C4;
-    --taupe:   #9C8871;
-    --bronze:  #A57C4E;
-    --gold:    #C2A278;
-    --espresso:#231A11;
-    --ink:     #171009;
-    --muted:   #7d6f5e;
-    --hairline: rgba(35,26,17,0.14);
-    --hairline-light: rgba(251,248,242,0.22);
+    --cream:   #FCFAF7;
+    --ivory:   #F7F1ED;
+    --linen:   #F4ECE8;
+    --sand:    #EBD8D4;
+    --taupe:   #9C8286;
+    --bronze:  #C0202F;
+    --gold:    #E4939E;
+    --espresso:#181314;
+    --ink:     #121011;
+    --muted:   #857478;
+    --hairline: rgba(24,19,20,0.14);
+    --hairline-light: rgba(253,250,249,0.22);
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -146,9 +146,10 @@
 
   /* ---------- micro components ---------- */
   .label {
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.38em;
+    font-family: 'Cinzel', serif;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
     text-transform: uppercase;
     color: var(--bronze);
   }
@@ -198,7 +199,7 @@
   .btn--solid::before { background: var(--bronze); }
   .btn--solid:hover { border-color: var(--bronze); }
 
-  .btn--light { border-color: rgba(251,248,242,0.55); color: var(--cream); }
+  .btn--light { border-color: rgba(253,250,249,0.55); color: var(--cream); }
   .btn--light::before { background: var(--cream); }
   .btn--light:hover { color: var(--ink); }
 
@@ -213,7 +214,7 @@
   }
   .announce {
     background: var(--espresso);
-    color: rgba(251,248,242,0.75);
+    color: rgba(253,250,249,0.75);
     text-align: center;
     font-size: 10px;
     letter-spacing: 0.22em;
@@ -235,7 +236,7 @@
     transition: background 0.5s var(--ease), padding 0.5s var(--ease), box-shadow 0.5s;
   }
   .topbar.scrolled nav {
-    background: rgba(251,248,242,0.92);
+    background: rgba(253,250,249,0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     padding: 14px 48px;
@@ -266,20 +267,28 @@
     line-height: 1;
   }
   .topbar.scrolled .brand { color: var(--espresso); }
-  .brand .brand-main {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 25px;
-    font-weight: 400;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
-    display: block;
+  .brand-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
   }
+  .brand .brand-word {
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    text-indent: 0.26em; /* balance tracking */
+  }
+  .brand .eye-mark { width: 40px; height: auto; flex-shrink: 0; }
+  .brand .eye-mark path { stroke: currentColor; }
   .brand .brand-sub {
     display: block;
-    font-size: 8.5px;
+    font-size: 8px;
     letter-spacing: 0.52em;
     text-transform: uppercase;
-    margin-top: 5px;
+    margin-top: 6px;
     opacity: 0.7;
     font-family: 'Jost', sans-serif;
     font-weight: 300;
@@ -305,7 +314,7 @@
     text-transform: uppercase;
     text-decoration: none;
     color: var(--cream);
-    border: 1px solid rgba(251,248,242,0.5);
+    border: 1px solid rgba(253,250,249,0.5);
     padding: 12px 24px;
     transition: all 0.4s var(--ease);
   }
@@ -391,7 +400,7 @@
     content: '';
     position: absolute; inset: 0;
     background:
-      linear-gradient(to top, rgba(15,10,5,0.82) 0%, rgba(15,10,5,0.25) 42%, rgba(15,10,5,0.18) 100%);
+      linear-gradient(to top, rgba(12,9,10,0.82) 0%, rgba(12,9,10,0.25) 42%, rgba(12,9,10,0.18) 100%);
   }
   .hero-content {
     position: relative;
@@ -406,8 +415,9 @@
     display: inline-flex;
     align-items: center;
     gap: 16px;
+    font-family: 'Cinzel', serif;
     font-size: 10.5px;
-    letter-spacing: 0.42em;
+    letter-spacing: 0.38em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 30px;
@@ -431,7 +441,7 @@
     max-width: 470px;
     font-size: 15.5px;
     font-weight: 200;
-    color: rgba(251,248,242,0.82);
+    color: rgba(253,250,249,0.82);
     margin-bottom: 44px;
     opacity: 0;
     animation: riseIn 1.2s 0.9s var(--ease) forwards;
@@ -455,7 +465,7 @@
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    color: rgba(251,248,242,0.6);
+    color: rgba(253,250,249,0.6);
     font-size: 9.5px;
     letter-spacing: 0.4em;
     text-transform: uppercase;
@@ -505,11 +515,25 @@
   .sec-head p { margin-top: 24px; color: var(--muted); font-size: 15.5px; max-width: 52ch; }
   .sec-head--center { margin-left: auto; margin-right: auto; text-align: center; }
 
+  /* ---------- florals ---------- */
+  .floral {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .floral--tr { top: -8px; right: -30px; width: clamp(190px, 27vw, 400px); }
+  .floral--bl { bottom: -8px; left: -30px; width: clamp(150px, 20vw, 300px); transform: scale(-1); opacity: 0.45; }
+  .faq-list { position: relative; z-index: 1; }
+
   /* ---------- manifesto ---------- */
   .manifesto {
     background: var(--ivory);
     border-bottom: 1px solid var(--hairline);
+    position: relative;
+    overflow: hidden;
   }
+  .manifesto-inner { position: relative; z-index: 1; }
   .manifesto-inner {
     max-width: 1000px;
     margin: 0 auto;
@@ -645,7 +669,7 @@
   .versus .label { color: var(--gold); }
   .versus h2 { color: var(--cream); }
   .versus h2 em { color: var(--gold); }
-  .versus .sec-head p { color: rgba(251,248,242,0.6); }
+  .versus .sec-head p { color: rgba(253,250,249,0.6); }
   .versus-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -654,7 +678,7 @@
     border: 1px solid var(--hairline-light);
   }
   .versus-col { background: var(--espresso); padding: 54px 48px; }
-  .versus-col.highlight { background: #2C2115; }
+  .versus-col.highlight { background: #251C1E; }
   .versus-col h3 {
     font-size: 27px;
     margin-bottom: 8px;
@@ -667,14 +691,14 @@
     display: block;
     margin-bottom: 26px;
   }
-  .versus-col.dim .tag { color: rgba(251,248,242,0.4); }
+  .versus-col.dim .tag { color: rgba(253,250,249,0.4); }
   .versus-col ul { list-style: none; }
   .versus-col li {
     padding: 15px 0 15px 34px;
     border-top: 1px solid var(--hairline-light);
     font-size: 14.5px;
     font-weight: 200;
-    color: rgba(251,248,242,0.82);
+    color: rgba(253,250,249,0.82);
     position: relative;
   }
   .versus-col li::before {
@@ -683,8 +707,8 @@
     font-size: 17px;
   }
   .versus-col.highlight li::before { content: '—'; color: var(--gold); }
-  .versus-col.dim li::before { content: '—'; color: rgba(251,248,242,0.3); }
-  .versus-col.dim li { color: rgba(251,248,242,0.5); }
+  .versus-col.dim li::before { content: '—'; color: rgba(253,250,249,0.3); }
+  .versus-col.dim li { color: rgba(253,250,249,0.5); }
 
   /* ---------- before/after ---------- */
   .ba-wrap {
@@ -743,7 +767,7 @@
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--cream);
-    background: rgba(23,16,9,0.55);
+    background: rgba(18,16,17,0.55);
     padding: 8px 16px;
     backdrop-filter: blur(6px);
     pointer-events: none;
@@ -927,7 +951,7 @@
     font-size: 21px;
     font-style: italic;
     line-height: 1.5;
-    color: rgba(251,248,242,0.88);
+    color: rgba(253,250,249,0.88);
   }
   .quote cite {
     display: block;
@@ -937,7 +961,7 @@
     font-size: 10.5px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: rgba(251,248,242,0.5);
+    color: rgba(253,250,249,0.5);
   }
   .quote-stars { color: var(--gold); letter-spacing: 6px; font-size: 13px; margin-bottom: 18px; }
 
@@ -998,7 +1022,7 @@
   .booking::after {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(35,26,17,0.25), rgba(23,16,9,0.92) 78%);
+    background: radial-gradient(ellipse at center, rgba(24,19,20,0.25), rgba(18,16,17,0.92) 78%);
   }
   .booking-inner {
     position: relative;
@@ -1016,7 +1040,7 @@
   .booking p {
     max-width: 520px;
     margin: 28px auto 0;
-    color: rgba(251,248,242,0.72);
+    color: rgba(253,250,249,0.72);
     font-size: 15.5px;
     font-weight: 200;
   }
@@ -1032,14 +1056,14 @@
     font-size: 10.5px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: rgba(251,248,242,0.45);
+    color: rgba(253,250,249,0.45);
     line-height: 2.4;
   }
 
   /* ---------- footer ---------- */
   footer {
     background: var(--ink);
-    color: rgba(251,248,242,0.6);
+    color: rgba(253,250,249,0.6);
   }
   .foot-inner {
     max-width: 1280px;
@@ -1047,10 +1071,15 @@
     padding: 90px 48px 40px;
   }
   .foot-mark {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(52px, 9vw, 120px);
-    font-weight: 300;
-    letter-spacing: 0.18em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 3vw, 40px);
+    font-family: 'Cinzel', serif;
+    font-size: clamp(30px, 6vw, 76px);
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
     text-transform: uppercase;
     color: var(--cream);
     text-align: center;
@@ -1058,7 +1087,8 @@
     padding-bottom: 70px;
     border-bottom: 1px solid var(--hairline-light);
   }
-  .foot-mark span { color: var(--gold); }
+  .foot-mark .eye-mark { width: clamp(48px, 8vw, 104px); height: auto; }
+  .foot-mark .eye-mark path { stroke: var(--gold); }
   .foot-cols {
     display: grid;
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -1076,7 +1106,7 @@
   .foot-cols p, .foot-cols a {
     font-size: 13.5px;
     font-weight: 200;
-    color: rgba(251,248,242,0.65);
+    color: rgba(253,250,249,0.65);
     text-decoration: none;
     line-height: 2.1;
     display: block;
@@ -1092,7 +1122,7 @@
     font-size: 10.5px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(251,248,242,0.35);
+    color: rgba(253,250,249,0.35);
   }
 
   /* ---------- mobile sticky bar ---------- */
@@ -1101,7 +1131,7 @@
     position: fixed;
     bottom: 0; left: 0; right: 0;
     z-index: 990;
-    background: rgba(23,16,9,0.96);
+    background: rgba(18,16,17,0.96);
     backdrop-filter: blur(10px);
     padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
     gap: 10px;
@@ -1115,7 +1145,7 @@
     text-decoration: none;
     padding: 15px 8px;
   }
-  .sticky-cta .s-call { color: var(--cream); border: 1px solid rgba(251,248,242,0.35); }
+  .sticky-cta .s-call { color: var(--cream); border: 1px solid rgba(253,250,249,0.35); }
   .sticky-cta .s-book { background: var(--bronze); color: var(--cream); }
 
   /* ---------- reveal on scroll ---------- */
@@ -1143,6 +1173,12 @@
   @media (max-width: 900px) {
     nav, .topbar.scrolled nav { padding-left: 22px; padding-right: 22px; }
     .announce { display: none; }
+    .brand .brand-word { font-size: 12.5px; letter-spacing: 0.2em; text-indent: 0.2em; }
+    .brand .eye-mark { width: 26px; }
+    .brand-lockup { gap: 8px; }
+    .brand .brand-sub { display: none; }
+    .floral--tr { width: 150px; opacity: 0.55; right: -20px; }
+    .floral--bl { width: 120px; opacity: 0.3; }
     .nav-cta .nav-phone { display: none; }
     .nav-toggle { display: block; }
     .section { padding: 88px 22px; }
@@ -1179,9 +1215,21 @@
     <li><a href="#journey">Your Journey</a></li>
     <li><a href="#about">About</a></li>
   </ul>
-  <a class="brand" href="#top" aria-label="Aileen's Beauty — home">
-    <span class="brand-main">Aileen's</span>
-    <span class="brand-sub">Beauty · Campbell</span>
+  <a class="brand" href="#top" aria-label="Aileen Beauty — home">
+    <span class="brand-lockup">
+      <span class="brand-word">Aileen</span>
+      <svg class="eye-mark" viewBox="0 0 48 26" fill="none" aria-hidden="true">
+        <path d="M5 8 Q24 -1 43 8" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M9 14 Q24 22.5 39 14" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M14 17.5 L11.5 21.5" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M19.5 19.5 L18 24" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M25.5 20 L25.5 24.5" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M31 18.8 L32.8 23" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M36 16.5 L38.5 20" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-word">Beauty</span>
+    </span>
+    <span class="brand-sub">Campbell · California</span>
   </a>
   <div class="nav-cta">
     <a class="nav-phone" href="tel:+16503058036">(650) 305-8036</a>
@@ -1234,6 +1282,7 @@
 
 <!-- ============ MANIFESTO ============ -->
 <section class="manifesto" aria-label="Our philosophy">
+  <img class="floral floral--tr" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_080048_4808d057-4b0d-42b6-9eb5-b614883160e6.png" alt="" aria-hidden="true" loading="lazy" width="1024" height="1024">
   <div class="manifesto-inner">
     <p class="label reveal">La Philosophie</p>
     <h2 class="reveal" style="--d:.1s">Some stories deserve<br>a <em>second telling.</em></h2>
@@ -1530,7 +1579,8 @@
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section" id="faq" aria-label="Frequently asked questions">
+<section class="section" id="faq" aria-label="Frequently asked questions" style="position: relative; overflow: visible;">
+  <img class="floral floral--bl" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/hf_20260722_080048_4808d057-4b0d-42b6-9eb5-b614883160e6.png" alt="" aria-hidden="true" loading="lazy" width="1024" height="1024">
   <div class="sec-head sec-head--center">
     <p class="label reveal">09 — Questions</p>
     <h2 class="reveal" style="--d:.1s">Asked, <em>answered.</em></h2>
@@ -1586,7 +1636,19 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="foot-inner">
-    <div class="foot-mark">Aileen<span>'s</span></div>
+    <div class="foot-mark">
+      <span>Aileen</span>
+      <svg class="eye-mark" viewBox="0 0 48 26" fill="none" aria-hidden="true">
+        <path d="M5 8 Q24 -1 43 8" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M9 14 Q24 22.5 39 14" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M14 17.5 L11.5 21.5" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M19.5 19.5 L18 24" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M25.5 20 L25.5 24.5" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M31 18.8 L32.8 23" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M36 16.5 L38.5 20" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
+      <span>Beauty</span>
+    </div>
     <div class="foot-cols">
       <div>
         <h4>The Studio</h4>
