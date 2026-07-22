@@ -15,17 +15,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: claude/luxury-brand-website-gw73f3
-      - name: Download user's clean before/after photos
+      - name: Download remaining library uploads for identification
         run: |
           set -e
-          mkdir -p aileens/assets/img
+          mkdir -p aileens/assets/idmedia
           mbase="https://d2ol7oe51mr4n9.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X"
-          curl -fsSL "$mbase/d60bef2d-23cb-4259-834a-b8ca8d6856c4.png" -o aileens/assets/img/user-before.png
-          curl -fsSL "$mbase/c4f38b2e-b79f-4feb-a806-9f973f674d67.jpg" -o aileens/assets/img/user-after.jpg
+          curl -fsSL "$mbase/e57c82d4-0327-4ede-9238-af273bead6d1.png" -o aileens/assets/idmedia/m1-e57c82d4.png
+          curl -fsSL "$mbase/0687ef40-1eec-421c-a7f5-e97d399cd954.jpg" -o aileens/assets/idmedia/m2-0687ef40.jpg
+          curl -fsSL "$mbase/ecf2e607-8e8d-4d36-a52f-2409850c8f3f.jpg" -o aileens/assets/idmedia/m3-ecf2e607.jpg
+          curl -fsSL "$mbase/1800402c-5039-49a5-bbd2-a01a61c8d21b.png" -o aileens/assets/idmedia/m4-1800402c.png
+          curl -fsSL "$mbase/b761f472-1c48-4007-af21-2f7e80a529bc.jpg" -o aileens/assets/idmedia/m5-b761f472.jpg
+          curl -fsSL "$mbase/f35ce7b1-4019-483c-b342-1e7f6c6a7a13.png" -o aileens/assets/idmedia/m6-f35ce7b1.png
       - name: Commit fetched assets
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add aileens/assets/img
-          git commit -m "Fetch user-provided before/after photos" || exit 0
+          git add aileens/assets/img aileens/assets/idmedia
+          git commit -m "Fetch remaining uploads for identification" || exit 0
           git push
