@@ -1,0 +1,35 @@
+name: Fetch campaign assets
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/luxury-brand-website-gw73f3
+      - name: Download campaign images from CDN
+        run: |
+          set -e
+          mkdir -p aileens/assets/img
+          base="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X"
+          curl -fsSL "$base/hf_20260722_163659_23df92ff-f7f4-450b-8de4-cf94d2e31240.png" -o aileens/assets/img/before-brows.png
+          curl -fsSL "$base/hf_20260722_163702_d6dc9c97-6168-4a4e-800f-bff7f70b84c5.png" -o aileens/assets/img/after-brows.png
+          curl -fsSL "$base/hf_20260722_163946_a51873d2-5173-4dfd-ab64-6b5411fb8689.png" -o aileens/assets/img/studio-room.png
+          curl -fsSL "$base/hf_20260722_163706_6dfe5aaa-7fa0-4ef5-a043-6f3fb2cf6400.png" -o aileens/assets/img/craft.png
+          curl -fsSL "$base/hf_20260722_163708_a8fbb4c2-f6cb-4511-9251-aea031982ec7.png" -o aileens/assets/img/rituals.png
+          curl -fsSL "$base/hf_20260722_064257_6415575e-0fe7-4506-8f27-3c768eff56ef.png" -o aileens/assets/img/brow-macro.png
+          curl -fsSL "$base/hf_20260722_072400_c23aedde-5421-454b-8f63-e3271d1b7c31.png" -o aileens/assets/img/portrait.png
+          curl -fsSL "$base/hf_20260722_080048_4808d057-4b0d-42b6-9eb5-b614883160e6.png" -o aileens/assets/img/floral.png
+          ls -la aileens/assets/img
+      - name: Commit fetched assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aileens/assets/img
+          git commit -m "Fetch campaign images into repo for self-hosting" || exit 0
+          git push
