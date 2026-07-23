@@ -1,0 +1,30 @@
+name: Fetch campaign assets
+
+on:
+  push:
+    branches: [claude/luxury-brand-website-gw73f3]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/luxury-brand-website-gw73f3
+      - name: Download latest uploads
+        run: |
+          set -e
+          mkdir -p aileens/assets/img
+          mbase="https://d2ol7oe51mr4n9.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X"
+          curl -fsSL "$mbase/3d0555f6-984e-4285-9efc-87a78b2f5524.png" -o aileens/assets/img/up1.png
+          curl -fsSL "$mbase/25583128-bc1f-43f6-af9e-33948052beb5.jpg" -o aileens/assets/img/up2.jpg
+      - name: Commit fetched assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aileens/assets/img
+          git commit -m "Fetch latest uploads" || exit 0
+          git push
