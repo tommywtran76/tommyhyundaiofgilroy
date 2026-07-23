@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Hyundai Deals in Gilroy | Tommy at Hyundai of Gilroy</title>
+<meta name="description" content="Get the best deal on your next Hyundai. Tommy at Hyundai of Gilroy — no pressure, real pricing, fast response. Serving Gilroy, Morgan Hill, San Jose & South Bay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #002C5F;
+    --blue-mid: #003F88;
+    --accent: #00AAD2;
+    --accent2: #E8F8FD;
+    --white: #ffffff;
+    --off: #F4F6F9;
+    --text: #1a1a2e;
+    --muted: #5a6a7a;
+    --border: rgba(0,44,95,0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ANNOUNCEMENT BAR */
+  .announce {
+    background: var(--accent);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .announce span { font-weight: 700; }
+
+  /* HERO */
+  .hero {
+    background: var(--blue);
+    color: var(--white);
+    padding: 60px 24px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,170,210,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,170,210,0.2);
+    border: 1px solid rgba(0,170,210,0.4);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 10vw, 88px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .hero h1 em {
+    color: var(--accent);
+    font-style: normal;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 16px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: #0090b8; transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); }
+
+  .hero-trust {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+  }
+  .trust-item .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* DEALS SECTION */
+  .section { padding: 64px 24px; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 6vw, 52px);
+    line-height: 1;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .deal-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .deal-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,44,95,0.12); border-color: var(--accent); }
+  .deal-card.featured { border-color: var(--accent); border-width: 2px; }
+  .deal-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background: var(--off);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--muted);
+    position: relative;
+  }
+  .deal-img-placeholder {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .deal-img-placeholder svg { opacity: 0.3; }
+  .deal-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .deal-badge.red { background: #E8003D; }
+  .deal-body { padding: 18px; }
+  .deal-model {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--blue);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .deal-offer {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .deal-offer strong { color: var(--accent); font-weight: 600; }
+  .deal-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+  .deal-price .from { font-size: 12px; color: var(--muted); }
+  .deal-price .amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--blue);
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+  .deal-price .mo { font-size: 12px; color: var(--muted); }
+  .deal-cta {
+    width: 100%;
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+  }
+  .deal-cta:hover { background: var(--accent); }
+
+  /* LEAD FORM */
+  .form-section {
+    background: var(--blue);
+    padding: 64px 24px;
+  }
+  .form-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    color: var(--white);
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .form-group select option { background: var(--blue); color: var(--white); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--accent); background: rgba(0,170,210,0.08); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    width: 100%;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    padding: 18px;
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 8px;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .form-submit:hover { background: #0090b8; transform: translateY(-2px); }
+  .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 12px;
+  }
+
+  /* CONTACT STRIP */
+  .contact-strip {
+    background: var(--accent2);
+    border-top: 1px solid rgba(0,170,210,0.15);
+    border-bottom: 1px solid rgba(0,170,210,0.15);
+    padding: 28px 24px;
+  }
+  .contact-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .contact-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--blue);
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+  .contact-text p { font-size: 14px; color: var(--muted); }
+  .contact-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-call {
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 13px 22px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-call:hover { background: var(--blue-mid); }
+  .btn-fb {
+    background: #1877F2;
+    color: var(--white);
+    border: none;
+    padding: 13px 22px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-fb:hover { background: #1465d0; }
+
+  /* WHY ME */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .why-card {
+    background: var(--off);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: all 0.2s;
+  }
+  .why-card:hover { background: var(--accent2); }
+  .why-icon {
+    width: 44px; height: 44px;
+    background: var(--blue);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .why-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .why-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* REVIEWS */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .review-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .review-stars { color: #F59E0B; font-size: 16px; margin-bottom: 10px; letter-spacing: 2px; }
+  .review-text { font-size: 14px; color: var(--text); line-height: 1.65; margin-bottom: 14px; font-style: italic; }
+  .review-author { font-size: 13px; font-weight: 600; color: var(--blue); }
+  .review-location { font-size: 12px; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue);
+    color: rgba(255,255,255,0.6);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer strong { color: var(--white); }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* FLOATING CTA - mobile */
+  .float-cta {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--blue);
+    padding: 14px 20px;
+    z-index: 999;
+    gap: 10px;
+  }
+  @media (max-width: 640px) { .float-cta { display: flex; } }
+  .float-cta a {
+    flex: 1;
+    text-align: center;
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .float-call { background: var(--accent); color: var(--white); }
+  .float-msg { background: rgba(255,255,255,0.12); color: var(--white); border: 1px solid rgba(255,255,255,0.2); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-badge { animation: fadeUp 0.5s ease both; }
+  .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-ctas { animation: fadeUp 0.5s 0.3s ease both; }
+  .hero-trust { animation: fadeUp 0.5s 0.4s ease both; }
+
+  /* SUCCESS STATE */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 40px;
+    color: var(--white);
+  }
+  .success-msg h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+  .success-msg p { color: rgba(255,255,255,0.7); font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  🔥 <span>May Offers:</span> 0% APR for 72 months on 2026 IONIQ 5 · 0% APR for 60 months on 2026 Tucson · Expires June 1
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Hyundai of Gilroy · Internet Sales</div>
+  <h1>Get The<br><em>Best Deal.</em><br>No Games.</h1>
+  <p class="hero-sub">Skip the runaround. Text or message me directly and I'll get you our best price fast — on any new or used Hyundai in stock.</p>
+  <div class="hero-ctas">
+    <a href="tel:4088420400" class="btn-primary">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.18 2.89 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Tommy Now
+    </a>
+    <a href="#lead-form" class="btn-secondary">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Get My Best Price
+    </a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item"><div class="dot"></div> No pressure, ever</div>
+    <div class="trust-item"><div class="dot"></div> Fast response · same day</div>
+    <div class="trust-item"><div class="dot"></div> Serving Gilroy · Morgan Hill · San Jose</div>
+    <div class="trust-item"><div class="dot"></div> Trade-ins welcome</div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <h3>Ready to talk? Reach me directly.</h3>
+      <p>Tommy · Internet Sales Manager · Hyundai of Gilroy</p>
+    </div>
+    <div class="contact-actions">
+      <a href="tel:4088420400" class="btn-call">
+        <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.18 2.89 2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (408) 842-0400
+      </a>
+      <a href="https://www.facebook.com/YOUR_PAGE_HERE" target="_blank" class="btn-fb">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        Message on Facebook
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CURRENT DEALS -->
+<div style="background: var(--white);">
+  <div class="section">
+    <div class="section-label">May 2026 Specials</div>
+    <div class="section-title">Hot Deals Right Now</div>
+    <p class="section-sub">All offers through Hyundai Motor Finance. Subject to credit approval. Expires June 1.</p>
+
+    <div class="deals-grid">
+
+      <a href="https://www.hyundaiofgilroy.com/new-vehicles/ioniq-5/" class="deal-card featured">
+        <div class="deal-img" style="background: #001f45;">
+          <div class="deal-img-placeholder">
+            <svg width="64" height="40" viewBox="0 0 64 40" fill="none"><rect x="4" y="16" width="56" height="18" rx="4" fill="white"/><rect x="12" y="8" width="36" height="12" rx="3" fill="white"/><circle cx="14" cy="35" r="5" fill="white"/><circle cx="50" cy="35" r="5" fill="white"/></svg>
+            <span style="color:rgba(255,255,255,0.5); font-size:12px;">2026 IONIQ 5</span>
+          </div>
+          <div class="deal-badge red">🔥 Best Deal</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-model">2026 Hyundai IONIQ 5</div>
+          <div class="deal-offer"><strong>0% APR for 72 months</strong> + $3,000 bonus cash through HMF</div>
+          <div class="deal-price">
+            <span class="from">from</span>
+            <span class="amount">$35,000</span>
+            <span class="mo">MSRP</span>
+          </div>
+          <div class="deal-cta">Unlock This Deal →</div>
+        </div>
+      </a>
+
+      <a href="https://www.hyundaiofgilroy.com/new-vehicles/tucson/" class="deal-card">
+        <div class="deal-img" style="background: #0a2240;">
+          <div class="deal-img-placeholder">
+            <svg width="64" height="40" viewBox="0 0 64 40" fill="none"><rect x="4" y="14" width="56" height="20" rx="4" fill="white"/><rect x="10" y="7" width="40" height="13" rx="3" fill="white"/><circle cx="15" cy="35" r="5" fill="white"/><circle cx="49" cy="35" r="5" fill="white"/></svg>
+            <span style="color:rgba(255,255,255,0.5); font-size:12px;">2026 Tucson</span>
+          </div>
+          <div class="deal-badge">0% APR</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-model">2026 Hyundai Tucson</div>
+          <div class="deal-offer"><strong>0% APR for 60 months</strong> + 90-day deferred first payment</div>
+          <div class="deal-price">
+            <span class="from">from</span>
+            <span class="amount">$31,450</span>
+            <span class="mo">MSRP</span>
+          </div>
+          <div class="deal-cta">Get This Deal →</div>
+        </div>
+      </a>
+
+      <a href="https://www.hyundaiofgilroy.com/new-vehicles/santa-fe/" class="deal-card">
+        <div class="deal-img" style="background: #0d2b4e;">
+          <div class="deal-img-placeholder">
+            <svg width="64" height="40" viewBox="0 0 64 40" fill="none"><rect x="2" y="13" width="60" height="21" rx="5" fill="white"/><rect x="8" y="6" width="44" height="14" rx="3" fill="white"/><circle cx="14" cy="35" r="5" fill="white"/><circle cx="50" cy="35" r="5" fill="white"/></svg>
+            <span style="color:rgba(255,255,255,0.5); font-size:12px;">2026 Santa Fe</span>
+          </div>
+          <div class="deal-badge">0% APR</div>
+        </div>
+        <div class="deal-body">
+          <div class="deal-model">2026 Hyundai Santa Fe</div>
+          <div class="deal-offer"><strong>0% APR for 60 months</strong> + 90-day deferred first payment</div>
+          <div class="deal-price">
+            <span class="from">from</span>
+            <span class="amount">$37,000</span>
+            <span class="mo">MSRP</span>
+          </div>
+          <div class="deal-cta">Get This Deal →</div>
+        </div>
+      </a>
+
+    </div>
+
+    <p style="font-size: 12px; color: var(--muted); text-align: center; margin-top: 16px;">
+      All prices are MSRP. Final pricing determined at dealership. Subject to HMF credit approval. Not all buyers will qualify. Offers expire June 1, 2026.
+    </p>
+  </div>
+</div>
+
+<!-- WHY TOMMY -->
+<div style="background: var(--off);">
+  <div class="section">
+    <div class="section-label">Why work with me</div>
+    <div class="section-title">The Tommy Difference</div>
+    <p class="section-sub">I'm your single point of contact — from first message to keys in hand.</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4>Same-day response</h4>
+        <p>I respond to every message within hours, not days. No waiting around.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>No pressure, ever</h4>
+        <p>Get real pricing upfront. No bait-and-switch, no games at the desk.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h4>Trade-in specialist</h4>
+        <p>I'll give you a real trade value before you drive in — no surprises.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>All credit types</h4>
+        <p>First-time buyers, rebuilding credit, or excellent score — I work with everyone.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div style="background: var(--white);">
+  <div class="section">
+    <div class="section-label">What customers say</div>
+    <div class="section-title">Real Reviews</div>
+    <p class="section-sub">From real customers in Gilroy, Morgan Hill, and San Jose.</p>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Tommy was straight with me from the first message. Got a great deal on my Tucson and drove off the same day. Ask for Tommy — he's the real deal."</p>
+        <div class="review-author">Maria G.</div>
+        <div class="review-location">Gilroy, CA</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I messaged three dealerships. Tommy was the only one who actually answered with real numbers. Drove 30 minutes and it was 100% worth it."</p>
+        <div class="review-author">James T.</div>
+        <div class="review-location">Morgan Hill, CA</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"First time buyer, nervous about my credit. Tommy walked me through everything and got me approved. Super easy process, no stress at all."</p>
+        <div class="review-author">Diana R.</div>
+        <div class="review-location">San Jose, CA</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEAD FORM -->
+<div class="form-section" id="lead-form">
+  <div class="form-inner">
+    <div style="text-align: center; margin-bottom: 36px;">
+      <div class="section-label" style="color: var(--accent);">Get your best price</div>
+      <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px,6vw,52px); color: var(--white); letter-spacing: 0.02em; line-height: 1; margin-bottom: 8px;">I'll Beat Any Offer.<br>Guaranteed.</h2>
+      <p style="color: rgba(255,255,255,0.6); font-size: 16px; font-weight: 300;">Fill this out and I'll respond within the hour with your real out-the-door price.</p>
+    </div>
+
+    <div id="form-wrap">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="fname" placeholder="Maria" />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="lname" placeholder="Garcia" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" placeholder="(408) 000-0000" />
+        </div>
+        <div class="form-group">
+          <label>Best Time to Call</label>
+          <select id="calltime">
+            <option value="">Select a time</option>
+            <option>Morning (9am–12pm)</option>
+            <option>Afternoon (12pm–5pm)</option>
+            <option>Evening (5pm–8pm)</option>
+            <option>Anytime</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Which vehicle are you interested in?</label>
+          <select id="vehicle">
+            <option value="">Select a model</option>
+            <option>2026 IONIQ 5 (0% APR · 72 months)</option>
+            <option>2026 Tucson (0% APR · 60 months)</option>
+            <option>2026 Santa Fe (0% APR · 60 months)</option>
+            <option>2026 IONIQ 6</option>
+            <option>2026 Elantra</option>
+            <option>2026 Sonata</option>
+            <option>2026 Palisade</option>
+            <option>Certified Pre-Owned</option>
+            <option>Not sure — show me options</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Do you have a trade-in? Any other notes?</label>
+          <textarea id="notes" placeholder="e.g. I have a 2021 Camry to trade in, looking for a monthly payment under $450..."></textarea>
+        </div>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Send My Request — I'll Respond Within the Hour ↗</button>
+      <p class="form-note">Your info is never sold or shared. This goes directly to Tommy at Hyundai of Gilroy.</p>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <div style="font-size: 48px; margin-bottom: 16px;">✓</div>
+      <h3>Got it! I'll be in touch soon.</h3>
+      <p>Watch for a call or text from Tommy at Hyundai of Gilroy — usually within the hour.</p>
+      <a href="tel:4088420400" class="btn-primary" style="display: inline-flex; margin-top: 24px;">Or call me now: (408) 842-0400</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Hyundai of Gilroy</strong><br>
+  6700 Automall Pkwy, Gilroy, CA 95020<br>
+  Tommy · Internet Sales Manager · <a href="tel:4088420400">(408) 842-0400</a><br><br>
+  <span style="font-size: 11px; opacity: 0.5;">All offers subject to credit approval through Hyundai Motor Finance. Not all buyers will qualify. Offers expire June 1, 2026. Dealer price may vary. See dealer for details.</span>
+</footer>
+
+<!-- MOBILE FLOATING CTA -->
+<div class="float-cta">
+  <a href="tel:4088420400" class="float-call">📞 Call Tommy</a>
+  <a href="#lead-form" class="float-msg">💬 Get My Price</a>
+</div>
+
+<script>
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const vehicle = document.getElementById('vehicle').value;
+    if (!fname || !phone || !vehicle) {
+      alert('Please fill in your name, phone number, and vehicle interest.');
+      return;
+    }
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  }
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+
+</body>
+</html>
