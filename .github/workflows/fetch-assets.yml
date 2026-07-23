@@ -1,5 +1,6 @@
 name: Fetch campaign assets
 on:
+  workflow_dispatch:
   push:
     branches: [claude/luxury-brand-website-gw73f3]
 permissions:
@@ -9,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: claude/luxury-brand-website-gw73f3
       - name: Download assets
         run: |
           curl -fsSL -o aileen-up1.png "https://d2ol7oe51mr4n9.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X/262074f9-88e2-4105-9699-b18500700f3f.png"
@@ -20,4 +23,4 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add aileen-up1.png aileen-up2.png aileen-up3.png
           git commit -m "Fetch uploaded Aileen photos" || echo "nothing to commit"
-          git push
+          git push origin HEAD:claude/luxury-brand-website-gw73f3
