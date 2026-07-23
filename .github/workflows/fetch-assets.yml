@@ -1,0 +1,31 @@
+name: Fetch campaign assets
+
+on:
+  push:
+    branches: [claude/luxury-brand-website-gw73f3]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/luxury-brand-website-gw73f3
+      - name: Download selected imagery
+        run: |
+          set -e
+          mkdir -p aileens/assets/img
+          base="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X"
+          curl -fsSL "$base/hf_20260723_050254_2ecc762c-bef3-42b0-ac5d-291fdaf6e44f.png" -o aileens/assets/img/method-new.png
+          curl -fsSL "$base/hf_20260723_050258_ed761eec-8232-4b24-8f5a-126574557178.png" -o aileens/assets/img/rituals-new.png
+          curl -fsSL "$base/hf_20260723_050303_3d014fb3-5718-4f2c-b98d-2e97f3a15160.png" -o aileens/assets/img/studio-about-new.png
+      - name: Commit fetched assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aileens/assets/img
+          git commit -m "Fetch selected imagery" || exit 0
+          git push
