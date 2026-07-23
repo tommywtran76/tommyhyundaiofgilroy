@@ -1,0 +1,29 @@
+name: Fetch campaign assets
+
+on:
+  push:
+    branches: [claude/luxury-brand-website-gw73f3]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/luxury-brand-website-gw73f3
+      - name: Download uploaded tearoom photo
+        run: |
+          set -e
+          mkdir -p aileens/assets/img
+          mbase="https://d2ol7oe51mr4n9.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X"
+          curl -fsSL "$mbase/9f7baf3a-ff62-468e-9907-95b8f802bfea.png" -o aileens/assets/img/tearoom-upload.png
+      - name: Commit fetched assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aileens/assets/img
+          git commit -m "Fetch uploaded tearoom photo" || exit 0
+          git push
