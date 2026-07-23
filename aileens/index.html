@@ -1016,14 +1016,15 @@
   .booking-bg {
     position: absolute; inset: 0;
     background-size: cover;
-    background-position: center;
-    opacity: 0.3;
-    filter: saturate(0.85);
+    background-position: 62% 42%;
+    opacity: 0.22;
+    filter: saturate(0.85) blur(2px);
+    transform: scale(1.06);
   }
   .booking::after {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(24,19,20,0.25), rgba(18,16,17,0.92) 78%);
+    background: radial-gradient(ellipse at center, rgba(24,19,20,0.5), rgba(18,16,17,0.96) 78%);
   }
   .booking-inner {
     position: relative;
@@ -1055,10 +1056,10 @@
   .booking-fine {
     margin-top: 44px;
     font-size: 10.5px;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(253,250,249,0.45);
-    line-height: 2.4;
+    color: rgba(253,250,249,0.5);
+    line-height: 2.3;
   }
 
   /* ---------- footer ---------- */
@@ -1175,6 +1176,10 @@
     nav, .topbar.scrolled nav { padding-left: 22px; padding-right: 22px; }
     .announce { display: none; }
     .brand .brand-word { font-size: 12.5px; letter-spacing: 0.2em; text-indent: 0.2em; }
+    .hero-content { padding-bottom: calc(10vh + 78px); }
+    .hero-ctas { flex-direction: column; width: 100%; }
+    .hero-ctas .btn { width: 100%; justify-content: center; padding: 18px 20px; }
+    .hero-eyebrow { font-size: 9px; letter-spacing: 0.3em; }
     .brand .eye-mark { width: 26px; }
     .brand-lockup { gap: 8px; }
     .brand .brand-sub { display: none; }
@@ -1310,7 +1315,7 @@
   <div class="sec-head">
     <p class="label reveal">01 — The Method</p>
     <h2 class="reveal" style="--d:.1s">Removal without laser.<br><em>Precision without compromise.</em></h2>
-    <p class="reveal" style="--d:.2s">Laser shatters pigment with heat. We take a gentler path — a saline-based PhiRemoval technique that draws pigment up and out through the surface of the skin, session by session, the way it was placed.</p>
+    <p class="reveal" style="--d:.2s">Laser shatters pigment with heat. We take a gentler path — saline eyebrow tattoo removal with the PhiRemoval technique, drawing pigment up and out through the surface of the skin, session by session, the way it was placed.</p>
   </div>
   <div class="method-grid">
     <div class="method-media reveal">
@@ -1461,7 +1466,7 @@
   <div class="sec-head">
     <p class="label reveal">05 — Your Journey</p>
     <h2 class="reveal" style="--d:.1s">Honest timelines.<br><em>No surprises.</em></h2>
-    <p class="reveal" style="--d:.2s">Removal done properly is a process, not an event. Here is exactly how it unfolds — because trust is built on knowing what comes next.</p>
+    <p class="reveal" style="--d:.2s">Microblading removal done properly is a process, not an event. Here is exactly how it unfolds — because trust is built on knowing what comes next.</p>
   </div>
   <div class="journey-list">
     <div class="j-item reveal">
@@ -1597,7 +1602,7 @@
   </div>
   <div class="faq-list">
     <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">How is non-laser removal different from laser?<span class="fx">+</span></button>
+      <button class="faq-q" aria-expanded="false">How is non-laser eyebrow tattoo removal different from laser?<span class="fx">+</span></button>
       <div class="faq-a"><p>Laser works by shattering pigment with heat — which can singe natural brow hair, turn warm or titanium-based pigments darker, and carries a higher risk of scarring and hypopigmentation on delicate brow skin. Our saline-based method gently lifts pigment out through the surface instead. It works on all pigment colors, protects your follicles, and is safe for all skin tones.</p></div>
     </div>
     <div class="faq-item">
@@ -1636,7 +1641,8 @@
     </div>
     <p class="booking-fine reveal" style="--d:.4s">
       816 W Hamilton Ave · Campbell, CA 95008<br>
-      By appointment · $100 booking fee applied to your service · 72-hour reschedule notice
+      By appointment only · $100 booking fee applied to your service<br>
+      72-hour reschedule notice
     </p>
   </div>
 </section>
