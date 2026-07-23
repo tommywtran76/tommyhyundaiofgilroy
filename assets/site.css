@@ -686,6 +686,13 @@
     margin: 0;
   }
   .ba-note { margin-top: 14px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .ba-slider--wide { aspect-ratio: 1600 / 664; }
+  .results-case { max-width: 1080px; margin: 0 auto; }
+  .results-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 34px; }
+  .results-pair figure { margin: 0; background: var(--sand); }
+  .results-pair img { width: 100%; height: auto; display: block; }
+  .results-pair figcaption { font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); padding: 12px 2px 0; }
+  @media (max-width: 700px) { .results-pair { grid-template-columns: 1fr; } }
 
   /* ---------- gallery ---------- */
   .gallery {
