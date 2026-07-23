@@ -1,0 +1,51 @@
+name: Fetch campaign assets
+on:
+  push:
+    branches: [claude/luxury-brand-website-gw73f3]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scrape business photos
+        run: |
+          mkdir -p _scrape
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+          curl -sL -A "$UA" -o _scrape/yelp-photos.html "https://www.yelp.com/biz_photos/aileens-beauty-campbell" || true
+          curl -sL -A "$UA" -o _scrape/yelp-biz.html "https://www.yelp.com/biz/aileens-beauty-campbell" || true
+          curl -sL -A "$UA" -o _scrape/gmaps.html "https://www.google.com/maps/search/Aileen%27s+Beauty+816+W+Hamilton+Ave+Campbell+CA?hl=en" || true
+          curl -sL -A "$UA" -o _scrape/gsearch.html "https://www.google.com/search?q=%22Aileen%27s+Beauty%22+Campbell+CA+photos&hl=en" || true
+          ls -la _scrape
+      - name: Extract and download photo URLs
+        run: |
+          python3 - <<'EOF'
+          import re, os, urllib.request
+          urls = set()
+          for f in os.listdir('_scrape'):
+              try: s = open(f'_scrape/{f}', encoding='utf-8', errors='ignore').read()
+              except: continue
+              urls.update(re.findall(r'https://s3-media\d\.fl\.yelpcdn\.com/bphoto/[A-Za-z0-9_-]+/o\.jpg', s))
+              urls.update(u.replace('348s','o') for u in re.findall(r'https://s3-media\d\.fl\.yelpcdn\.com/bphoto/[A-Za-z0-9_-]+/348s\.jpg', s))
+              urls.update(re.findall(r'https://lh\d\.googleusercontent\.com/p/[A-Za-z0-9_-]+', s))
+          urls = sorted(urls)[:40]
+          print(len(urls), 'photo urls')
+          os.makedirs('_scrape/photos', exist_ok=True)
+          for i, u in enumerate(urls):
+              try:
+                  req = urllib.request.Request(u + ('=w1600' if 'googleusercontent' in u else ''), headers={'User-Agent': 'Mozilla/5.0'})
+                  data = urllib.request.urlopen(req, timeout=20).read()
+                  if len(data) > 20000:
+                      open(f'_scrape/photos/p{i:02d}.jpg', 'wb').write(data)
+              except Exception as e:
+                  print('skip', u, e)
+          print('downloaded', len(os.listdir('_scrape/photos')))
+          EOF
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _scrape
+          git commit -m "Scrape business profile photos" || echo "nothing to commit"
+          git push
