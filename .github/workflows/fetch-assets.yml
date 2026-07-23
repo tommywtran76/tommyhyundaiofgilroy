@@ -9,43 +9,92 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Scrape business photos
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install Playwright
         run: |
-          mkdir -p _scrape
-          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
-          curl -sL -A "$UA" -o _scrape/yelp-photos.html "https://www.yelp.com/biz_photos/aileens-beauty-campbell" || true
-          curl -sL -A "$UA" -o _scrape/yelp-biz.html "https://www.yelp.com/biz/aileens-beauty-campbell" || true
-          curl -sL -A "$UA" -o _scrape/gmaps.html "https://www.google.com/maps/search/Aileen%27s+Beauty+816+W+Hamilton+Ave+Campbell+CA?hl=en" || true
-          curl -sL -A "$UA" -o _scrape/gsearch.html "https://www.google.com/search?q=%22Aileen%27s+Beauty%22+Campbell+CA+photos&hl=en" || true
-          ls -la _scrape
-      - name: Extract and download photo URLs
+          npm init -y >/dev/null
+          npm i playwright >/dev/null
+          npx playwright install chromium --with-deps >/dev/null
+      - name: Harvest photos with real browser
         run: |
-          python3 - <<'EOF'
-          import re, os, urllib.request
-          urls = set()
-          for f in os.listdir('_scrape'):
-              try: s = open(f'_scrape/{f}', encoding='utf-8', errors='ignore').read()
-              except: continue
-              urls.update(re.findall(r'https://s3-media\d\.fl\.yelpcdn\.com/bphoto/[A-Za-z0-9_-]+/o\.jpg', s))
-              urls.update(u.replace('348s','o') for u in re.findall(r'https://s3-media\d\.fl\.yelpcdn\.com/bphoto/[A-Za-z0-9_-]+/348s\.jpg', s))
-              urls.update(re.findall(r'https://lh\d\.googleusercontent\.com/p/[A-Za-z0-9_-]+', s))
-          urls = sorted(urls)[:40]
-          print(len(urls), 'photo urls')
-          os.makedirs('_scrape/photos', exist_ok=True)
-          for i, u in enumerate(urls):
-              try:
-                  req = urllib.request.Request(u + ('=w1600' if 'googleusercontent' in u else ''), headers={'User-Agent': 'Mozilla/5.0'})
-                  data = urllib.request.urlopen(req, timeout=20).read()
-                  if len(data) > 20000:
-                      open(f'_scrape/photos/p{i:02d}.jpg', 'wb').write(data)
-              except Exception as e:
-                  print('skip', u, e)
-          print('downloaded', len(os.listdir('_scrape/photos')))
+          cat > harvest.js <<'EOF'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          (async () => {
+            fs.mkdirSync('_scrape/photos', { recursive: true });
+            const browser = await chromium.launch();
+            const ctx = await browser.newContext({
+              userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
+              viewport: { width: 1440, height: 900 }, locale: 'en-US',
+            });
+            const page = await ctx.newPage();
+            const ids = new Set();
+            const collect = async () => {
+              const found = await page.evaluate(() => {
+                const out = [];
+                document.querySelectorAll('img').forEach(i => { if (i.src) out.push(i.src); });
+                document.querySelectorAll('[style*="googleusercontent"]').forEach(el => out.push(el.getAttribute('style')));
+                return out.join('\n');
+              });
+              (found.match(/lh\d\.googleusercontent\.com\/p\/[A-Za-z0-9_-]+/g) || []).forEach(u => ids.add(u));
+            };
+            try {
+              await page.goto('https://www.google.com/maps/search/Aileen%27s+Beauty+816+W+Hamilton+Ave+Campbell+CA?hl=en', { waitUntil: 'domcontentloaded', timeout: 60000 });
+              await page.waitForTimeout(6000);
+              // consent screen?
+              const consent = await page.$('button[aria-label*="Accept"], form[action*="consent"] button');
+              if (consent) { await consent.click(); await page.waitForTimeout(5000); }
+              await page.screenshot({ path: '_scrape/gmaps-1.png' });
+              await collect();
+              // open photos grid if a photos button exists
+              const photoBtn = await page.$('button[aria-label*="photo" i], a[aria-label*="photo" i], [data-photo-index]');
+              if (photoBtn) { await photoBtn.click(); await page.waitForTimeout(5000); await collect(); }
+              // scroll gallery
+              for (let k = 0; k < 6; k++) { await page.mouse.wheel(0, 900); await page.waitForTimeout(1200); await collect(); }
+              await page.screenshot({ path: '_scrape/gmaps-2.png' });
+            } catch (e) { console.log('maps error', e.message); }
+            try {
+              await page.goto('https://www.yelp.com/biz_photos/aileens-beauty-campbell', { waitUntil: 'domcontentloaded', timeout: 60000 });
+              await page.waitForTimeout(8000);
+              await page.screenshot({ path: '_scrape/yelp.png' });
+              const html = await page.content();
+              fs.writeFileSync('_scrape/yelp-rendered.html', html);
+            } catch (e) { console.log('yelp error', e.message); }
+            console.log('google photo ids:', ids.size);
+            fs.writeFileSync('_scrape/photo-ids.txt', [...ids].join('\n'));
+            // download originals
+            let n = 0;
+            for (const u of [...ids].slice(0, 40)) {
+              try {
+                const r = await ctx.request.get('https://' + u + '=w1600');
+                const b = await r.body();
+                if (b.length > 25000) fs.writeFileSync(`_scrape/photos/g${String(n++).padStart(2, '0')}.jpg`, b);
+              } catch (e) {}
+            }
+            // yelp photos from rendered html
+            const yhtml = fs.existsSync('_scrape/yelp-rendered.html') ? fs.readFileSync('_scrape/yelp-rendered.html', 'utf8') : '';
+            const yurls = new Set((yhtml.match(/https:\/\/s3-media\d\.fl\.yelpcdn\.com\/bphoto\/[A-Za-z0-9_-]+\/(?:o|348s|1000s)\.jpg/g) || []).map(u => u.replace(/(348s|1000s)\.jpg/, 'o.jpg')));
+            console.log('yelp photo urls:', yurls.size);
+            let m = 0;
+            for (const u of [...yurls].slice(0, 40)) {
+              try {
+                const r = await ctx.request.get(u);
+                const b = await r.body();
+                if (b.length > 25000) fs.writeFileSync(`_scrape/photos/y${String(m++).padStart(2, '0')}.jpg`, b);
+              } catch (e) {}
+            }
+            console.log('downloaded', fs.readdirSync('_scrape/photos').length);
+            await browser.close();
+          })();
           EOF
+          node harvest.js
       - name: Commit
         run: |
+          rm -f _scrape/yelp-rendered.html
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add _scrape
-          git commit -m "Scrape business profile photos" || echo "nothing to commit"
+          git commit -m "Harvest business profile photos via browser" || echo "nothing to commit"
           git push
