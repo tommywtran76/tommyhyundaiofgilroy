@@ -1,0 +1,29 @@
+name: Fetch campaign assets
+on:
+  push:
+    branches: [claude/luxury-brand-website-gw73f3]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download upscaled photos
+        run: |
+          mkdir -p _upscaled
+          B="https://d8j0ntlcm91z4.cloudfront.net/user_3GOOQes5XcbXRDnFW2q49JQyg8X"
+          curl -fsSL -o _upscaled/lamer-room-4k.png   "$B/hf_20260723_162921_08695bcd-b0cc-4a7b-87c6-5f62e7551973.png"
+          curl -fsSL -o _upscaled/headspa-room-4k.png "$B/hf_20260723_162923_974f91be-f282-4b96-b5d7-03fb32512acd.png"
+          curl -fsSL -o _upscaled/suite-white-4k.png  "$B/hf_20260723_163112_be6ba8cc-0992-4d2e-bb6e-9f99b024f333.png"
+          curl -fsSL -o _upscaled/forever-room-4k.png "$B/hf_20260723_163113_d9222850-4cde-4d8b-802b-41e6468958c4.png"
+          curl -fsSL -o _upscaled/reception-4k.png    "$B/hf_20260723_163114_5bbfaa79-05a2-49d9-9e45-5d2a3000516b.png"
+          curl -fsSL -o _upscaled/nook-4k.png         "$B/hf_20260723_163115_b6366349-7e1d-475b-acc4-459cac78ed9b.png"
+          ls -la _upscaled
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _upscaled
+          git commit -m "Fetch 4K upscaled studio photos" || echo "nothing to commit"
+          git push
