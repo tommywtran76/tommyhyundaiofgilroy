@@ -922,6 +922,20 @@
     filter: saturate(0.85) blur(2px);
     transform: scale(1.06);
   }
+  .booking-bg--espresso {
+    background:
+      radial-gradient(ellipse at 20% 12%, rgba(192,32,47,0.20), transparent 55%),
+      radial-gradient(ellipse at 82% 88%, rgba(228,147,158,0.12), transparent 60%),
+      linear-gradient(160deg, #241a1c 0%, #181314 52%, #121011 100%);
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+  .booking .floral--night {
+    z-index: 1;
+    opacity: 0.16;
+    mix-blend-mode: screen;
+  }
   .booking::after {
     content: '';
     position: absolute; inset: 0;
