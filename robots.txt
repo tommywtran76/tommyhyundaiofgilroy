@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tommywtran76.github.io/tommyhyundaiofgilroy/sitemap.xml
+Sitemap: https://removal.aileennbeauty.com/sitemap.xml
