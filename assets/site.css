@@ -907,6 +907,60 @@
     max-width: 64ch;
   }
 
+  /* ---------- service pages ---------- */
+  .topbar--solid .nav-links a,
+  .topbar--solid .brand,
+  .topbar--solid .nav-phone,
+  .topbar--solid .nav-book { color: var(--espresso); }
+  .topbar--solid .nav-book { border-color: var(--espresso); }
+  .topbar--solid .nav-book:hover { background: var(--espresso); color: var(--cream); }
+  .topbar--solid .nav-toggle span { background: var(--espresso); }
+  .svc-hero {
+    position: relative;
+    background: var(--ivory);
+    overflow: hidden;
+    padding: 190px 48px 100px;
+  }
+  .svc-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 940px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .svc-crumb {
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 30px;
+  }
+  .svc-crumb a { color: inherit; text-decoration: none; }
+  .svc-crumb a:hover { color: var(--bronze); }
+  .svc-crumb span { color: var(--espresso); }
+  .svc-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(46px, 6.4vw, 92px);
+    line-height: 1.04;
+    letter-spacing: 0.01em;
+    color: var(--espresso);
+  }
+  .svc-hero h1 em { font-style: italic; color: var(--bronze); }
+  .svc-hero .lede {
+    max-width: 62ch;
+    margin: 30px auto 0;
+    font-size: 16.5px;
+    font-weight: 200;
+    line-height: 1.85;
+    color: var(--muted);
+  }
+  .svc-hero .hero-ctas { justify-content: center; margin-top: 44px; }
+  @media (max-width: 900px) {
+    .svc-hero { padding: 150px 24px 70px; }
+    .svc-hero .lede { font-size: 15px; }
+  }
+
   /* ---------- booking ---------- */
   .booking {
     position: relative;
