@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aileen’s Beauty — Guest Check-In & Lead Capture
 
-## Getting Started
+A premium customer check-in and lead-capture web app for **Aileen’s Beauty**
+(Campbell / San Jose, California · 650-305-8036 · www.aileennbeauty.com),
+designed for an iPad at the front desk with a secure staff dashboard behind it.
 
-First, run the development server:
+Built with **Next.js 15 · TypeScript · Tailwind CSS 4 · Prisma** (SQLite for
+local development, **Supabase/PostgreSQL** for production) and deployable to
+**Vercel** as a responsive Progressive Web App.
+
+## What’s inside
+
+| Area | Route | Notes |
+| --- | --- | --- |
+| Guest kiosk | `/kiosk` (also `/`) | 8-screen flow: welcome → your info (with returning-guest lookup) → services → service-specific questions → how you heard about us → marketing consent → review + signature → confirmation. EN / Tiếng Việt / Español toggle, 60-second inactivity reset, data cleared after every submission. |
+| Staff dashboard | `/admin` | Today’s check-ins, upcoming appointments, walk-in leads, consultations, customer directory + full profiles, marketing consent, follow-up tasks, reports, settings. |
+| Legal pages | `/privacy`, `/terms`, `/sms-terms` | Linked from the consent screen. |
+| Public API | `POST /api/checkin`, `POST /api/lookup` | The only unauthenticated endpoints; both validated. |
+| Integration API | `/api/integrations/*` | Bearer-token feeds for Zapier/Make/CRM, Square webhook, Twilio inbound SMS. See `docs/INTEGRATIONS.md`. |
+
+## Quick start (local)
 
 ```bash
+cd checkin-app
+npm install
+cp .env.example .env          # set AUTH_SECRET (openssl rand -hex 32)
+npx prisma db push            # creates prisma/dev.db (SQLite)
+npm run seed                  # owner + front-desk accounts, sample customers
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Kiosk: http://localhost:3000/kiosk
+- Dashboard: http://localhost:3000/admin — sign in with the seed credentials
+  printed by `npm run seed` (default `aileen@aileennbeauty.com` /
+  `ChangeMe!2026` — **change this immediately** in Settings).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Roles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Role | Can |
+| --- | --- |
+| **Owner** | Everything: staff accounts, backups, permanent customer deletion, audit history |
+| **Staff** / **Front Desk** | Day-to-day: statuses, notes, follow-ups, consent records, exports |
+| **Read Only** | View everything, change nothing |
 
-## Learn More
+## Security & privacy design
 
-To learn more about Next.js, take a look at the following resources:
+- Admin sessions: signed HTTP-only cookies (scrypt-hashed passwords, JWT),
+  **30-minute idle timeout with automatic logout**, login throttling, and an
+  append-only **audit log** of staff actions.
+- Customer phone numbers, emails, health notes, signatures, and photos are
+  **never** exposed on public endpoints; photos are served only through an
+  authenticated admin route.
+- Marketing consent is **optional, un-prechecked, and stored append-only**
+  with the exact wording, timestamp, and channel for every submission.
+  STOP/START texts (via Twilio) update the trail automatically.
+- Duplicate customers are prevented by unique normalized phone numbers;
+  repeat check-ins update the same profile.
+- Customers can update info, withdraw consent, get a copy of their data
+  (per-customer JSON export), or request deletion (flag + owner-only
+  permanent delete). Owner can download a full JSON backup.
+- The kiosk is not a medical diagnostic system, and says so; safety questions
+  are for service safety only.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `docs/DEPLOYMENT.md` — Vercel deployment, environment variables
+- `docs/SUPABASE_SETUP.md` — production database setup (or plain PostgreSQL)
+- `docs/INTEGRATIONS.md` — Twilio, Square, Google Calendar, Gmail/Sheets,
+  Mailchimp, Zapier/Make, webhook + API reference
+- `docs/KIOSK_IPAD.md` — putting an iPad into kiosk mode (Guided Access)
+- `docs/TEST_CHECKLIST.md` — manual test checklist (pre-launch)
+- `.env.example` — environment variable template
+- `supabase/migrations/0001_init.sql` — PostgreSQL DDL mirror of the schema
 
-## Deploy on Vercel
+## Phased build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app was built and committed in the four requested phases:
+1. Database, welcome screen, check-in flow, confirmation, basic admin
+2. Customer profiles, service-specific questions, lead follow-up, status tracking, reports
+3. Notification fan-out and Square / Twilio / webhook / CRM integrations
+4. Multilingual kiosk, staff roles, audit logs, legal pages, security hardening, docs

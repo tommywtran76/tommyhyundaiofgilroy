@@ -3,8 +3,9 @@ import { cookies } from "next/headers";
 import { randomBytes, scryptSync, timingSafeEqual } from "crypto";
 import { prisma } from "./db";
 
-export const ROLES = ["OWNER", "STAFF", "FRONT_DESK", "READ_ONLY"] as const;
-export type Role = (typeof ROLES)[number];
+export { ROLES } from "./roles";
+export type { Role } from "./roles";
+import type { Role } from "./roles";
 
 // Roles allowed to modify data. READ_ONLY can only view.
 const WRITE_ROLES: Role[] = ["OWNER", "STAFF", "FRONT_DESK"];
