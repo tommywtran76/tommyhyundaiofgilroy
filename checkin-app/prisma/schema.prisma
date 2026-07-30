@@ -1,21 +1,22 @@
 // Aileen's Beauty — Check-In & Lead Capture
 //
-// Default provider is SQLite so the app runs anywhere with zero setup.
-// For production on Supabase/PostgreSQL, change provider to "postgresql",
-// set DATABASE_URL, and run `npx prisma migrate deploy`
-// (see docs/SUPABASE_SETUP.md; a ready-made Postgres DDL is in
-// supabase/migrations/0001_init.sql).
+// Production provider is PostgreSQL (Supabase) — see docs/SUPABASE_SETUP.md;
+// a ready-made DDL for the Supabase SQL editor is in
+// supabase/migrations/0001_init.sql. For a quick local run without Postgres,
+// switch provider to "sqlite" and set DATABASE_URL="file:./dev.db"
+// (or just point DATABASE_URL/DIRECT_URL at your Supabase project).
 //
 // Enum-like fields are plain strings (validated in lib/validation.ts) so the
-// schema is portable between SQLite and PostgreSQL.
+// schema stays portable between PostgreSQL and SQLite.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
