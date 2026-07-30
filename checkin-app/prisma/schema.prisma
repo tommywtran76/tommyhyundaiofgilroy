@@ -1,0 +1,208 @@
+// Aileen's Beauty — Check-In & Lead Capture
+//
+// Default provider is SQLite so the app runs anywhere with zero setup.
+// For production on Supabase/PostgreSQL, change provider to "postgresql",
+// set DATABASE_URL, and run `npx prisma migrate deploy`
+// (see docs/SUPABASE_SETUP.md; a ready-made Postgres DDL is in
+// supabase/migrations/0001_init.sql).
+//
+// Enum-like fields are plain strings (validated in lib/validation.ts) so the
+// schema is portable between SQLite and PostgreSQL.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  // OWNER | STAFF | FRONT_DESK | READ_ONLY
+  role         String    @default("STAFF")
+  active       Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Customer {
+  id                String    @id @default(cuid())
+  firstName         String
+  lastName          String
+  // Normalized to digits only (e.g. 6503058036); unique for duplicate detection
+  phone             String    @unique
+  email             String?
+  // Stored as "YYYY-MM-DD" or "MM-DD" (year optional)
+  birthday          String?
+  // en | vi | es | other
+  preferredLanguage String    @default("en")
+  referralSource    String?
+  referralName      String?
+  firstVisitAt      DateTime?
+  lastVisitAt       DateTime?
+  totalVisits       Int       @default(0)
+  // Estimated lifetime/opportunity value in whole dollars
+  estimatedValue    Int       @default(0)
+  // JSON array of tag strings
+  tags              String    @default("[]")
+  notes             String?
+  doNotContact      Boolean   @default(false)
+  deletionRequestedAt DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  checkIns CheckIn[]
+  consents ConsentRecord[]
+  photos   Photo[]
+  followUps FollowUp[]
+}
+
+model CheckIn {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  // APPOINTMENT | CONSULTATION | WALK_IN | GIFT_CARD | ACCOMPANYING
+  visitType    String
+  isFirstVisit Boolean @default(true)
+  // Kiosk language used at submission: en | vi | es
+  language     String  @default("en")
+
+  // JSON array of service keys (see lib/services.ts)
+  services     String  @default("[]")
+  otherService String?
+
+  // YES | NO | NOT_SURE
+  hasAppointment  String  @default("NOT_SURE")
+  appointmentTime String?
+  staffMember     String?
+  serviceBooked   String?
+  // YES | MAYBE_LATER | INFO_ONLY
+  bookingHelp     String?
+
+  // JSON object of service-specific intake answers (removal/facial/body-scrub)
+  answers     String  @default("{}")
+  safetyNotes String?
+
+  referralSource String?
+  referralName   String?
+
+  // Signature image as data URL (PNG); never exposed on public endpoints
+  signature String?
+
+  // WAITING | IN_CONSULTATION | IN_SERVICE | COMPLETED | NO_SHOW | FOLLOW_UP_NEEDED
+  status       String  @default("WAITING")
+  waitEstimate String?
+  staffNotes   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  consents ConsentRecord[]
+  photos   Photo[]
+
+  @@index([createdAt])
+  @@index([status])
+}
+
+// One row per consent decision, per channel, per submission — immutable record
+// of exactly what the customer agreed to (or declined) and when.
+model ConsentRecord {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  checkInId  String?
+  checkIn    CheckIn? @relation(fields: [checkInId], references: [id], onDelete: SetNull)
+
+  // SMS | EMAIL
+  channel String
+  granted Boolean
+  // Exact consent wording shown to the customer at the time
+  wording String
+  // kiosk | admin | api
+  source    String   @default("kiosk")
+  createdAt DateTime @default(now())
+  revokedAt DateTime?
+
+  @@index([customerId, channel])
+}
+
+// Uploaded customer photos (e.g. tattoo reference). Stored as base64 and only
+// served through authenticated admin endpoints.
+model Photo {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  checkInId  String?
+  checkIn    CheckIn? @relation(fields: [checkInId], references: [id], onDelete: SetNull)
+  mimeType   String
+  data       String
+  createdAt  DateTime @default(now())
+}
+
+model FollowUp {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  // NEW_LEAD | CONTACT_TODAY | WAITING_REPLY | CONSULT_SCHEDULED |
+  // BOOKED | NOT_READY | DO_NOT_CONTACT
+  stage            String  @default("NEW_LEAD")
+  dueDate          DateTime?
+  notes            String?
+  // call | text | email
+  preferredContact String?
+  estimatedValue   Int     @default(0)
+  lastContactAt    DateTime?
+  nextAction       String?
+  done             Boolean @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([stage, done])
+}
+
+model MessageTemplate {
+  id        String   @id @default(cuid())
+  name      String
+  // SMS | EMAIL
+  channel   String   @default("SMS")
+  body      String
+  createdAt DateTime @default(now())
+}
+
+// In-app notification feed for the dashboard bell / sound alerts.
+model Notification {
+  id        String    @id @default(cuid())
+  type      String
+  message   String
+  checkInId String?
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  userEmail String?
+  action    String
+  entity    String?
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model Setting {
+  key   String @id
+  value String
+}
