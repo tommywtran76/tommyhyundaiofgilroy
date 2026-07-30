@@ -8,6 +8,12 @@ Built with **Next.js 15 · TypeScript · Tailwind CSS 4 · Prisma** (SQLite for
 local development, **Supabase/PostgreSQL** for production) and deployable to
 **Vercel** as a responsive Progressive Web App.
 
+> **Domains:** the main business website is **www.aileennbeauty.com**. The
+> static site at this repository's root serves the
+> **removal.aileennbeauty.com** landing pages (see `/CNAME`) and is separate
+> from this app. Deploy the check-in app as its own Vercel project — a good
+> home for it is a dedicated subdomain such as `checkin.aileennbeauty.com`.
+
 ## What’s inside
 
 | Area | Route | Notes |
