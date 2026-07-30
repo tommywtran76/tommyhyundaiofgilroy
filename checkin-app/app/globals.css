@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  /* Aileen's Beauty palette */
+  --color-ivory: #f7f3ed;
+  --color-blush: #e7d2cc;
+  --color-blush-soft: #f1e4e0;
+  --color-gold: #b89b72;
+  --color-gold-deep: #9a7f58;
+  --color-charcoal: #262424;
+  --color-charcoal-soft: #4a4644;
+  --color-cream: #fffdfc;
+
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Manrope", -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  --shadow-soft: 0 10px 40px -12px rgb(38 36 36 / 0.12);
+  --shadow-card: 0 4px 24px -8px rgb(38 36 36 / 0.10);
+}
+
+html {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Kiosk: prevent accidental zoom / text selection / callouts on iPad */
+.kiosk-root {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+.kiosk-root input,
+.kiosk-root textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Elegant fade/slide between kiosk screens */
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.screen-in {
+  animation: screen-in 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Thin gold divider used under serif headings */
+.gold-rule {
+  width: 3.5rem;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold), transparent);
+}
+
+/* Focus visibility for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+@media print {
+  .no-print { display: none; }
+}
