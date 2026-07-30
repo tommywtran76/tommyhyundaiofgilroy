@@ -29,16 +29,18 @@ local development, **Supabase/PostgreSQL** for production) and deployable to
 ```bash
 cd checkin-app
 npm install
-cp .env.example .env          # set AUTH_SECRET (openssl rand -hex 32)
-npx prisma db push            # creates prisma/dev.db (SQLite)
-npm run seed                  # owner + front-desk accounts, sample customers
+# Point .env at a Postgres database (e.g. your Supabase project) —
+# or for a zero-dependency run, switch prisma/schema.prisma to sqlite
+# (see the comment at the top of that file), then:
+npm run setup                 # creates .env, database tables, seed data
 npm run dev
 ```
 
 - Kiosk: http://localhost:3000/kiosk
-- Dashboard: http://localhost:3000/admin — sign in with the seed credentials
-  printed by `npm run seed` (default `aileen@aileennbeauty.com` /
-  `ChangeMe!2026` — **change this immediately** in Settings).
+- Dashboard: http://localhost:3000/admin — on an empty database the login
+  page shows a one-time **Create Owner Account** screen; with seeded sample
+  data, sign in with the credentials `npm run seed` prints (default
+  `aileen@aileennbeauty.com` / `ChangeMe!2026` — **change this immediately**).
 
 ## Roles
 

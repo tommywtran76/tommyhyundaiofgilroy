@@ -11,7 +11,8 @@ export async function middleware(req: NextRequest) {
   const needsAuth =
     (pathname.startsWith("/admin") && pathname !== "/admin/login") ||
     (pathname.startsWith("/api/admin") &&
-      pathname !== "/api/admin/login");
+      pathname !== "/api/admin/login" &&
+      pathname !== "/api/admin/bootstrap");
 
   if (!needsAuth) return NextResponse.next();
 

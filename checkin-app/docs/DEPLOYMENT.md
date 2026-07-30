@@ -6,27 +6,18 @@
 - A production database — follow `docs/SUPABASE_SETUP.md` first.
 - This repository pushed to GitHub.
 
-## 2. Switch Prisma to PostgreSQL
+## 2. Create the database schema
 
-In `checkin-app/prisma/schema.prisma` change the datasource:
+The app ships pointed at PostgreSQL. Create the tables once, either way:
 
-```prisma
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-}
-```
+- **No terminal needed:** open Supabase → SQL Editor → paste the contents of
+  `supabase/migrations/0001_init.sql` → Run.
+- **With a terminal:** `cd checkin-app && npx prisma db push` (with
+  `DATABASE_URL`/`DIRECT_URL` set in `.env`). Optionally `npm run seed` for
+  sample data.
 
-Commit the change, then create the schema in the production database (once):
-
-```bash
-cd checkin-app
-DATABASE_URL="<direct connection string>" npx prisma db push
-DATABASE_URL="<direct connection string>" npm run seed   # optional sample data + owner login
-```
-
-(Alternatively run `supabase/migrations/0001_init.sql` in the Supabase SQL editor.)
+No seed is required for production: on first visit, `/admin` shows a one-time
+**Create Owner Account** screen (it disappears as soon as any account exists).
 
 ## 3. Create the Vercel project
 
