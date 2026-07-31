@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { ensureSchema } from "@/lib/migrate";
 import { checkInSchema, normalizePhone } from "@/lib/validation";
 import { EMAIL_CONSENT_WORDING, SMS_CONSENT_WORDING } from "@/lib/consent";
 import { notifyCheckIn } from "@/lib/notify";
@@ -10,6 +11,7 @@ export const runtime = "nodejs";
 // Public endpoint used by the kiosk. Deliberately returns only a success flag
 // and the first name — never customer records.
 export async function POST(req: NextRequest) {
+  await ensureSchema();
   let body: unknown;
   try {
     body = await req.json();

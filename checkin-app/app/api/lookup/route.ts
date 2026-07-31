@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { ensureSchema } from "@/lib/migrate";
 import { lookupSchema, normalizePhone } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -8,6 +9,7 @@ export const runtime = "nodejs";
 // full phone number, and the response contains only the fields the kiosk form
 // pre-fills — no visit history, notes, photos, or consent data.
 export async function POST(req: NextRequest) {
+  await ensureSchema();
   let body: unknown;
   try {
     body = await req.json();
