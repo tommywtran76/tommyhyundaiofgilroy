@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { ensureSchema } from "@/lib/migrate";
 import { createSessionToken, SESSION_COOKIE, verifyPassword, type Role } from "@/lib/auth";
 import { audit } from "@/lib/audit";
 
@@ -12,6 +13,7 @@ const MAX_FAILURES = 5;
 const WINDOW_MS = 15 * 60 * 1000;
 
 export async function POST(req: NextRequest) {
+  await ensureSchema();
   let body: { email?: string; password?: string };
   try {
     body = await req.json();

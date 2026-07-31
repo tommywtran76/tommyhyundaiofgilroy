@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
+import { ensureSchema } from "@/lib/migrate";
 import { createSessionToken, hashPassword, SESSION_COOKIE } from "@/lib/auth";
 import { audit } from "@/lib/audit";
 
@@ -12,6 +13,7 @@ export const runtime = "nodejs";
 // only created by an owner from Settings.
 
 export async function GET() {
+  await ensureSchema();
   const count = await prisma.user.count();
   return NextResponse.json({ needed: count === 0 });
 }
@@ -37,6 +39,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  await ensureSchema();
   const count = await prisma.user.count();
   if (count > 0) {
     return NextResponse.json(
